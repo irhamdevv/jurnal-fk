@@ -1,0 +1,12 @@
+RewriteEngine On
+
+# Paksa HTTPS jika belum diaktifkan
+#RewriteCond %{HTTPS} !=on
+#RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Pastikan request bukan untuk file atau direktori yang ada
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Redirect semua request ke index.php
+RewriteRule ^(.*)$ index.php/$1 [L,QSA]
